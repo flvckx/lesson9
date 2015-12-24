@@ -13,7 +13,6 @@ https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIControl_
 https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIEvent_Class/
 https://developer.apple.com/library/ios/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/multitouch_background/multitouch_background.html 
 
-
 Домашнее задание:
 1. Просмотреть все проекты в папке Samples
 2. В проекте Help:

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C45CB381C2BFC6400A0DEC8 /* CircleGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C45CB371C2BFC6400A0DEC8 /* CircleGestureRecognizer.m */; };
 		507A7AE5186670A40057771F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507A7AE4186670A40057771F /* Foundation.framework */; };
 		507A7AE7186670A40057771F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507A7AE6186670A40057771F /* CoreGraphics.framework */; };
 		507A7AE9186670A40057771F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507A7AE8186670A40057771F /* UIKit.framework */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C45CB361C2BFC6400A0DEC8 /* CircleGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleGestureRecognizer.h; sourceTree = "<group>"; };
+		0C45CB371C2BFC6400A0DEC8 /* CircleGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleGestureRecognizer.m; sourceTree = "<group>"; };
 		507A7AE1186670A40057771F /* HelpGestureRecognizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelpGestureRecognizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		507A7AE4186670A40057771F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		507A7AE6186670A40057771F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -119,6 +122,8 @@
 			children = (
 				507A7B1C186670FB0057771F /* MCHelpGestureRecognizer.h */,
 				507A7B1D186670FB0057771F /* MCHelpGestureRecognizer.m */,
+				0C45CB361C2BFC6400A0DEC8 /* CircleGestureRecognizer.h */,
+				0C45CB371C2BFC6400A0DEC8 /* CircleGestureRecognizer.m */,
 				507A7AF3186670A50057771F /* MCAppDelegate.h */,
 				507A7AF4186670A50057771F /* MCAppDelegate.m */,
 				507A7AF6186670A50057771F /* Main_iPhone.storyboard */,
@@ -205,7 +210,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = MC;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Max Chuquimia";
 				TargetAttributes = {
 					507A7B04186670A50057771F = {
@@ -261,6 +266,7 @@
 			files = (
 				507A7B1E186670FB0057771F /* MCHelpGestureRecognizer.m in Sources */,
 				507A7AF5186670A50057771F /* MCAppDelegate.m in Sources */,
+				0C45CB381C2BFC6400A0DEC8 /* CircleGestureRecognizer.m in Sources */,
 				507A7AFE186670A50057771F /* MCViewController.m in Sources */,
 				507A7AF1186670A40057771F /* main.m in Sources */,
 			);
@@ -324,7 +330,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -339,6 +344,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -364,7 +370,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -402,6 +407,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HelpGestureRecognizer/HelpGestureRecognizer-Prefix.pch";
 				INFOPLIST_FILE = "HelpGestureRecognizer/HelpGestureRecognizer-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chuquimianproductions.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -415,6 +421,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HelpGestureRecognizer/HelpGestureRecognizer-Prefix.pch";
 				INFOPLIST_FILE = "HelpGestureRecognizer/HelpGestureRecognizer-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chuquimianproductions.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -423,7 +430,6 @@
 		507A7B1A186670A50057771F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HelpGestureRecognizer.app/HelpGestureRecognizer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -437,6 +443,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "HelpGestureRecognizerTests/HelpGestureRecognizerTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chuquimianproductions.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -446,7 +453,6 @@
 		507A7B1B186670A50057771F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HelpGestureRecognizer.app/HelpGestureRecognizer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -456,6 +462,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HelpGestureRecognizer/HelpGestureRecognizer-Prefix.pch";
 				INFOPLIST_FILE = "HelpGestureRecognizerTests/HelpGestureRecognizerTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chuquimianproductions.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

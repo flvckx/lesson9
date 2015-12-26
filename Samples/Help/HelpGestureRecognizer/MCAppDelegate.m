@@ -10,31 +10,31 @@
 
 @implementation MCAppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    // Override point for customization after application launch.
-	self.timer = [NSTimer timerWithTimeInterval:0.1
-										 target:self
-									   selector:@selector(timerFired:)
-									   userInfo:@{@"time": @0}
-									repeats:YES];
-	NSTimer *timer;
-	timer.
-	
-	
-    return YES;
-}
-
--(void)dealloc {
-	[self.timer invalidate];
-}
-
-
-
--(void) timerFired:(NSTimer *)timer {
-	[self.timer invalidate];
-	self.timer = nil;
-}
+//- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+//{
+//    // Override point for customization after application launch.
+//	self.timer = [NSTimer timerWithTimeInterval:0.1
+//										 target:self
+//									   selector:@selector(timerFired:)
+//									   userInfo:@{@"time": @0}
+//									repeats:YES];
+//	NSTimer *timer;
+//	timer.
+//	
+//	
+//    return YES;
+//}
+//
+//-(void)dealloc {
+//	[self.timer invalidate];
+//}
+//
+//
+//
+//-(void) timerFired:(NSTimer *)timer {
+//	[self.timer invalidate];
+//	self.timer = nil;
+//}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

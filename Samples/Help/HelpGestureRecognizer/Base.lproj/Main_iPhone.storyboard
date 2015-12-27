@@ -22,7 +22,7 @@
                                 <animations/>
                                 <color key="backgroundColor" red="0.91579694060000005" green="0.93658615249999999" blue="0.88960519069999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" editable="NO" text="Use your finger to draw a ? anywhere on the screen! Don't forget to dot it quickly!" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7FM-1p-dtM">

@@ -21,7 +21,7 @@
         firstTouch_ = CGPointZero;
         firstTouchTime_ = 0.0;
         _center = CGPointZero;
-        _radius = 0.0;
+        _radius = 0.0; 
     }
     return self;
 }

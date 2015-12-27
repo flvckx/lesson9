@@ -8,6 +8,8 @@
 #import <UIKit/UIKit.h>
 #import "MCHelpGestureRecognizer.h"
 #import "CircleGestureRecognizer.h"
+#import "AimGestureRecognizer.h"
+#import "SquareGestureRecognizer.h"
 
 @interface MCViewController : UIViewController <UIGestureRecognizerDelegate>
 {
@@ -15,5 +17,7 @@
     IBOutlet UILabel *detectionLabel;
     
     CircleGestureRecognizer *circleRecognizer;
+    AimGestureRecognizer *aimRecognizer;
+    SquareGestureRecognizer *squareRecognizer;
 }
 @end

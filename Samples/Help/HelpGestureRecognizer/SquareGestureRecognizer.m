@@ -15,6 +15,7 @@
         _side = 0.0;
         _sideVariancePercent = 25.0;
         firstTouch = CGPointZero;
+        points_ = [[NSMutableArray alloc] init];
         _sideClosureDistanceVariance = 50.0;
     }
     return self;
@@ -22,7 +23,7 @@
 
 - (void) reset{
     [super reset];
-    [points removeAllObjects];
+    [points_ removeAllObjects];
     firstTouch = CGPointZero;
     //_center = CGPointZero;
     _side = 0.0;
@@ -36,15 +37,16 @@
 - (void) touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [super touchesMoved:touches withEvent:event];
     CGPoint startPoint = [[touches anyObject] locationInView:self.view];
-    [points addObject:NSStringFromCGPoint(startPoint)];
+    [points_ addObject:NSStringFromCGPoint(startPoint)];
 }
 
-static float const ACCEPTED_DEVIATION = 10;
+static float MIN_LENGTH_OF_SIDE = 15;
+static float ACCURACY_FOR_DIAGNALS = 25;
 
 - (void) touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [super touchesEnded:touches withEvent:event];
     CGPoint endPoint = [[touches anyObject] locationInView:self.view];
-    [points addObject:NSStringFromCGPoint(endPoint)];
+    [points_ addObject:NSStringFromCGPoint(endPoint)];
     
     // Didn't finish close enough to starting point
     if (distanceBetweenPointsp(firstTouch, endPoint) > _sideClosureDistanceVariance) {
@@ -62,46 +64,45 @@ static float const ACCEPTED_DEVIATION = 10;
     NSUInteger bottomLeftMostIndex = NSUIntegerMax;
     
     int index = 0;
-    for (NSString *onePointString in points) {
+    for (NSString *onePointString in points_) {
         CGPoint onePoint = CGPointFromString(onePointString);
-        if ((onePoint.x > topRightMost.x) &&
-            ((onePoint.y >= firstTouch.y + ACCEPTED_DEVIATION) || (onePoint.y <= firstTouch.y - ACCEPTED_DEVIATION))) {
+        if ((onePoint.x >= topRightMost.x) && (onePoint.y >= topRightMost.y)) {
             topRightMost = onePoint;
             topRightMostIndex = index;
         }
-        if ((onePoint.x < topLeftMost.x) &&
-            ((onePoint.y >= firstTouch.y + ACCEPTED_DEVIATION) || (onePoint.y <= firstTouch.y - ACCEPTED_DEVIATION))) {
+        if ((onePoint.x <= topLeftMost.x) && (onePoint.y >= topLeftMost.y)) {
             topLeftMost = onePoint;
             topLeftMostIndex = index;
         }
-        if ((onePoint.y < bottomRightMost.y) &&
-            ((onePoint.x >= topRightMost.x + ACCEPTED_DEVIATION) || (onePoint.x <= topRightMost.x - ACCEPTED_DEVIATION))) {
+        if ((onePoint.x >= bottomRightMost.x) && (onePoint.y <= bottomRightMost.y)) {
             bottomRightMost = onePoint;
             bottomRightMostIndex = index;
         }
-        if ((onePoint.y < bottomLeftMost.y) &&
-            ((onePoint.x >= firstTouch.x + ACCEPTED_DEVIATION) || (onePoint.x <= firstTouch.x - ACCEPTED_DEVIATION))) {
+        if ((onePoint.x <= bottomLeftMost.x) && (onePoint.y <= bottomLeftMost.y)) {
             bottomLeftMost = onePoint;
             bottomLeftMostIndex = index;
         }
         index++;
     }
     
-    // Calculate the radius by looking at the first point and the center
+    // Calculate the side by looking at the first point and the center
     _side = fabs(distanceBetweenPointsp(topRightMost, firstTouch));
     
-    CGFloat minSide = _side - (_side * _sideVariancePercent);
-    CGFloat maxSide = _side + (_side * _sideVariancePercent);
+    //CGFloat minSide = _side - (_side * _sideVariancePercent);
+    //CGFloat maxSide = _side + (_side * _sideVariancePercent);
     
-    if ((fabs(distanceBetweenPointsp(topRightMost, bottomRightMost)) < minSide)
-        || (fabs(distanceBetweenPointsp(topRightMost, bottomRightMost)) > maxSide))
+    if (fabs(distanceBetweenPointsp(topRightMost, bottomRightMost)) < MIN_LENGTH_OF_SIDE)
         self.state = UIGestureRecognizerStateFailed;
-    if ((fabs(distanceBetweenPointsp(bottomLeftMost, bottomRightMost)) < minSide)
-        || (fabs(distanceBetweenPointsp(bottomLeftMost, bottomRightMost)) > maxSide))
+    if (fabs(distanceBetweenPointsp(bottomLeftMost, bottomRightMost)) < MIN_LENGTH_OF_SIDE)
         self.state = UIGestureRecognizerStateFailed;
-    if ((fabs(distanceBetweenPointsp(topLeftMost, bottomLeftMost)) < minSide)
-        || (fabs(distanceBetweenPointsp(topLeftMost, bottomLeftMost)) > maxSide))
+    if (fabs(distanceBetweenPointsp(topLeftMost, bottomLeftMost)) < MIN_LENGTH_OF_SIDE)
         self.state = UIGestureRecognizerStateFailed;
+    float difference = fabsf((fabsf(distanceBetweenPointsp(topLeftMost, bottomRightMost))) - (fabsf(distanceBetweenPointsp(topRightMost, bottomLeftMost))));
+    if (fabsf((fabsf(distanceBetweenPointsp(topLeftMost, bottomRightMost))) - (fabsf(distanceBetweenPointsp(topRightMost, bottomLeftMost)))) > ACCURACY_FOR_DIAGNALS) {
+        self.state = UIGestureRecognizerStateFailed;
+    }
+    
+
     
     self.state = UIGestureRecognizerStateEnded;
 

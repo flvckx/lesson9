@@ -26,10 +26,10 @@
     [circleRecognizer setDelegate:self];
     [self.view addGestureRecognizer:circleRecognizer];
     
-    aimRecognizer = [[AimGestureRecognizer alloc] initWithTarget:self
-                                                          action:@selector(showAim)];
-    [aimRecognizer setDelegate:self];
-    [self.view addGestureRecognizer:aimRecognizer];
+//    aimRecognizer = [[AimGestureRecognizer alloc] initWithTarget:self
+//                                                          action:@selector(showAim)];
+//    [aimRecognizer setDelegate:self];
+//    [self.view addGestureRecognizer:aimRecognizer];
     
     squareRecognizer = [[SquareGestureRecognizer alloc] initWithTarget:self
                                                                 action:@selector(showSquare)];

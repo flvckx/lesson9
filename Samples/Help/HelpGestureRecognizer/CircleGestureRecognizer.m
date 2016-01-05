@@ -97,7 +97,7 @@
             topMostIndex = index;
         }
         if (onePoint.y < bottomMost.y) {
-            onePoint = bottomMost;
+            bottomMost = onePoint;
             bottomMostIndex = index;
         }
         index++;
@@ -122,13 +122,13 @@
 
     // This check is probably not necessary
     // Make sure they closed the circle - the startPoint and endPoint should be within a few degrees of each other.
-    //    CGFloat angle = angleBetweenLines(firstTouch, center, endPoint, center);
-    //
-    //    if (fabs(angle) > kCircleClosureAngleVariance ) {
-    //        label.text = [NSString stringWithFormat:@"Didn't close circle, angle (%f) too large!", fabs(angle)];
-    //        [self performSelector:@selector(eraseText) withObject:nil afterDelay:2.0];
-    //        return;
-    //    }
+//        CGFloat angle = angleBetweenLines(firstTouch, center, endPoint, center);
+//    
+//        if (fabs(angle) > kCircleClosureAngleVariance ) {
+//            label.text = [NSString stringWithFormat:@"Didn't close circle, angle (%f) too large!", fabs(angle)];
+//            [self performSelector:@selector(eraseText) withObject:nil afterDelay:2.0];
+//            return;
+//        }
     
     // Calculate the radius by looking at the first point and the center
     _radius = fabs(distanceBetweenPoints(_center, firstTouch_));
@@ -144,8 +144,8 @@
     //    back down to 0 (the function returns the smaller of the angles formed by the lines, so
     //    180° is the highest it will return, 0 the lowest. If it switches direction more than once,
     //    then it's not a circle
-    CGFloat minRadius = _radius - (_radius * _radiusVariancePercent);
-    CGFloat maxRadius = _radius + (_radius * _radiusVariancePercent);
+    CGFloat minRadius = _radius - (_radius * _radiusVariancePercent / 100);
+    CGFloat maxRadius = _radius + (_radius * _radiusVariancePercent / 100);
     
     index = 0;
     for (NSString *onePointString in points_) {

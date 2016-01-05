@@ -13,7 +13,7 @@ CGFloat distanceBetweenPointsp (CGPoint first, CGPoint second);
 
 @interface SquareGestureRecognizer : UIGestureRecognizer
 {
-    NSMutableArray *points;
+    NSMutableArray *points_;
     CGPoint firstTouch;
 }
 

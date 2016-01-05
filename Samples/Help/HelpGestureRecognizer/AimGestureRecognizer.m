@@ -16,22 +16,15 @@
 }
 
 -(void) touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    
-    if (checkThePoint)
-    {
-        [super touchesEnded:touches withEvent:event];
-        [self reset];
-    }
-    else
-    {
-        [super touchesEnded:touches withEvent:event];
-        
+    [super touchesEnded:touches withEvent:event];
+    if (super.self.state != UIGestureRecognizerStateFailed) {
         checkThePoint = TRUE;
-        
-        //cancel the drawing if the user takes too long to dot the ?
+        //cancel the drawing if the user takes too long to dot the o
         [self performSelector:@selector(reset) withObject:[self superclass] afterDelay:1.25f];
-    }
-    
+    } else {
+        [self reset];
+        self.state = UIGestureRecognizerStateFailed;
+    }    
 }
 
 

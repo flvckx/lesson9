@@ -20,4 +20,5 @@
     AimGestureRecognizer *aimRecognizer;
     SquareGestureRecognizer *squareRecognizer;
 }
+
 @end

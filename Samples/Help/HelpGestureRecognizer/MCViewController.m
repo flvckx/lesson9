@@ -11,6 +11,7 @@
 
 @end
 
+
 @implementation MCViewController
 
 - (void)viewDidLoad
@@ -26,10 +27,14 @@
     [circleRecognizer setDelegate:self];
     [self.view addGestureRecognizer:circleRecognizer];
     
-//    aimRecognizer = [[AimGestureRecognizer alloc] initWithTarget:self
-//                                                          action:@selector(showAim)];
-//    [aimRecognizer setDelegate:self];
-//    [self.view addGestureRecognizer:aimRecognizer];
+    circleRecognizer.delegate = self;
+    
+    aimRecognizer = [[AimGestureRecognizer alloc] initWithTarget:self
+                                                          action:@selector(showAim)];
+    [aimRecognizer setDelegate:self];
+    [self.view addGestureRecognizer:aimRecognizer];
+    
+    aimRecognizer.delegate = self;
     
     squareRecognizer = [[SquareGestureRecognizer alloc] initWithTarget:self
                                                                 action:@selector(showSquare)];
@@ -37,6 +42,15 @@
     [self.view addGestureRecognizer:squareRecognizer];
     
     [detectionLabel setAlpha:0.0f];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    BOOL result = NO;
+    
+    if (gestureRecognizer == aimRecognizer && otherGestureRecognizer == circleRecognizer)
+        result = YES;
+    
+    return result;
 }
 
 -(void)showHelp
